@@ -1,183 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Group 4 - Product & Food Reviews</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: #222;
-    background: #fafafa;
-  }
+  <title>Check Before You Choose</title>
 
-  header {
-    background: #1a1a2e;
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  <style>
+    /* ===== GENERAL ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-  header h1 {
-    font-size: 1.5rem;
-  }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f5;
+      color: #242424;
+      line-height: 1.7;
+    }
 
-  .hero {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, #16213e, #0f3460);
-    color: #fff;
-  }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-  .hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+    /* ===== NAVIGATION ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #ddd;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-    opacity: 0.9;
-  }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-  .btn {
-    display: inline-block;
-    background: #e94560;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-decoration: none;
-  }
+    nav {
+      display: flex;
+      gap: 25px;
+    }
 
-  .btn:hover {
-    background: #c9314b;
-  }
+    nav a {
+      font-size: 0.9rem;
+      color: #555;
+      transition: 0.3s;
+    }
 
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-  }
+    nav a:hover {
+      color: #000;
+    }
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 7%;
+      background: #e9e7df;
+    }
 
-  .card {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
+    .hero-content {
+      max-width: 800px;
+    }
 
-  .card h3 {
-    margin-bottom: 0.5rem;
-    color: #0f3460;
-    border-bottom: 2px solid #e94560;
-    padding-bottom: 5px;
-  }
+    .tag {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid #999;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
 
-  .card ul {
-    padding-left: 20px;
-    margin-top: 10px;
-  }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+      margin-bottom: 25px;
+      letter-spacing: -3px;
+    }
 
-  .card li {
-    margin-bottom: 8px;
-  }
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: #555;
+      font-size: 1.1rem;
+    }
 
-  footer {
-    text-align: center;
-    padding: 1.5rem;
-    color: #777;
-    font-size: 0.9rem;
-    background: #1a1a2e;
-    margin-top: 40px;
-  }
+    .hero-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 13px 28px;
+      background: #242424;
+      color: white;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
-  footer a {
-    color: #e94560;
-    text-decoration: none;
-    font-weight: bold;
-  }
-</style>
+    .hero-button:hover {
+      transform: translateY(-3px);
+      background: #444;
+    }
+
+    /* ===== SECTIONS ===== */
+    section.content-section {
+      padding: 100px 7%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-intro {
+      max-width: 750px;
+      color: #666;
+      margin-bottom: 45px;
+    }
+
+    /* ===== CONCEPT ===== */
+    .concept-box {
+      background: white;
+      padding: 45px;
+      border-left: 5px solid #242424;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    .concept-box h3 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    /* ===== CARDS ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border: 1px solid #e1e1e1;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    }
+
+    .card-number {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* ===== RESEARCH JOURNEY ===== */
+    .timeline {
+      border-left: 2px solid #ccc;
+      padding-left: 35px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 45px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      background: #242424;
+      border-radius: 50%;
+      position: absolute;
+      left: -42px;
+      top: 8px;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      color: #666;
+      max-width: 750px;
+    }
+
+    /* ===== EQUIPMENT TABLE ===== */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #242424;
+      color: white;
+    }
+
+    td {
+      color: #555;
+    }
+
+    /* ===== SMART GOALS ===== */
+    .smart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+    }
+
+    .smart-card {
+      background: white;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    .smart-letter {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .smart-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .smart-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* ===== SOURCES ===== */
+    .source-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .source {
+      background: white;
+      padding: 20px 25px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    .source:hover {
+      background: #efeee9;
+    }
+
+    .source span {
+      color: #555;
+    }
+
+    .source-button {
+      padding: 8px 15px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #242424;
+      color: white;
+      text-align: center;
+      padding: 50px 7%;
+    }
+
+    footer h2 {
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+
+      header {
+        padding: 15px 5%;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 0.75rem;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 60px 5%;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      section.content-section {
+        padding: 70px 5%;
+      }
+
+      .concept-box {
+        padding: 25px;
+      }
+
+      .source {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Group 4 Projects</h1>
-</header>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">CBYC.</div>
 
-<!-- HERO SECTION: Title & Main Concept Information -->
-<section class="hero">
-  <h2>Group 4 Product & Food Reviews</h2>
-  <p>A livestream where we review different products and food, share our honest opinions, and give viewers helpful information so they can decide whether something is worth buying or trying.</p>
-  <button class="btn" onclick="window.open('https://youtube.com', '_blank')">Watch Video</button>
-</section>
+    <nav>
+      <a href="#concept">Concept</a>
+      <a href="#audience">Audience</a>
+      <a href="#research">Research</a>
+      <a href="#goals">Goals</a>
+    </nav>
+  </header>
 
-<!-- MAIN SECTION: The Project Layout Cards -->
-<main>
-  <h2>Project Plan & Requirements</h2>
 
-  <div class="cards">
-    
-    <!-- CARD 1: Audience Info -->
-    <div class="card">
-      <h3>Audience & Viewer Needs</h3>
-      <ul>
-        <li>Target Audience: [Type target audience details here]</li>
-        <li>Viewer Characteristics: [Type viewer details here]</li>
-      </ul>
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <span class="tag">STREAMING PROJECT • 2026</span>
+
+      <h1>
+        Check Before<br>
+        You Choose
+      </h1>
+
+      <p>
+        Honest reviews. Useful information.
+        Better and more informed choices.
+      </p>
+
+      <a href="#concept" class="hero-button">
+        Explore Our Project ↓
+      </a>
+
     </div>
 
-    <!-- CARD 2: Research Details -->
-    <div class="card">
-      <h3>Research Journey</h3>
-      <p>[Type what your group changed during planning and why you changed it here]</p>
+  </section>
+
+
+  <!-- ===== CONCEPT ===== -->
+  <section class="content-section" id="concept">
+
+    <p class="section-label">01 — The Idea</p>
+
+    <h2 class="section-title">
+      Our Streaming Concept
+    </h2>
+
+    <p class="section-intro">
+      Our group plans to create a product and food review livestream
+      that combines honest opinions with useful information.
+    </p>
+
+    <div class="concept-box">
+
+      <h3>Check Before You Choose</h3>
+
+      <p>
+        Our livestream will review different products and food based
+        on factors such as quality, price, taste, usefulness, and safety.
+        Instead of simply saying whether something is good or bad,
+        we want to provide information that viewers can consider before
+        buying or trying something.
+      </p>
+
+      <br>
+
+      <p>
+        Through our website and livestream, we hope to create content
+        that is both entertaining and helpful while encouraging viewers
+        to make safer and more informed choices.
+      </p>
+
     </div>
 
-    <!-- CARD 3: Platforms & Equipment -->
-    <div class="card">
-      <h3>Platforms & Equipment</h3>
-      <ul>
-        <li>Platform: YouTube Live</li>
-        <li>Software: VS Code Editor</li>
-        <li>Equipment: [Type hardware / gear details here]</li>
-      </ul>
+  </section>
+
+
+  <!-- ===== AUDIENCE ===== -->
+  <section class="content-section" id="audience">
+
+    <p class="section-label">02 — Our Viewers</p>
+
+    <h2 class="section-title">
+      Who We're Creating This For
+    </h2>
+
+    <p class="section-intro">
+      Understanding our viewers helps us decide what information
+      should be included in our reviews and how we should present it.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Our Audience</h3>
+        <p>
+          Teens and young viewers who are interested in products,
+          food, and online reviews.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>What They Need</h3>
+        <p>
+          Clear, honest, relevant, and easy-to-understand information
+          before making a choice.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>What Makes a Good Stream</h3>
+        <p>
+          A good stream should be informative, interactive, organized,
+          entertaining, honest, and responsible.
+        </p>
+      </div>
+
     </div>
 
-    <!-- CARD 4: SMART Goals -->
-    <div class="card">
-      <h3>SMART Goals & Activities</h3>
-      <ul>
-        <li>Goal 1: [Type goal details here]</li>
-        <li>Goal 2: [Type goal details here]</li>
-      </ul>
+  </section>
+
+
+  <!-- ===== RESEARCH ===== -->
+  <section class="content-section" id="research">
+
+    <p class="section-label">03 — Development</p>
+
+    <h2 class="section-title">
+      From Ideas to Our Final Concept
+    </h2>
+
+    <p class="section-intro">
+      Our concept changed as we compared different ideas and considered
+      what would be most useful to our audience.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <h3>Travel Vlogs</h3>
+        <p>
+          We first considered travel-related content because it could
+          be entertaining and visually interesting.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Day-in-the-Life</h3>
+        <p>
+          We explored a more personal type of content that would show
+          everyday experiences.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Community Helping</h3>
+        <p>
+          We considered content that could focus on helping people
+          and highlighting community experiences.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Cooking Tutorials</h3>
+        <p>
+          We also considered cooking content because food is relatable
+          and naturally suited for livestreaming.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Product & Food Reviews</h3>
+        <p>
+          We eventually chose product and food reviews because they
+          allow us to combine entertainment with information that
+          viewers can actually use when making decisions.
+        </p>
+      </div>
+
     </div>
 
-  </div>
-</main>
+  </section>
 
-<!-- FOOTER SECTION: Source Documentation Links -->
-<footer>
-  <p>Project References: <a href="https://google.com" target="_blank">Our Source Documentation Link</a></p>
-</footer>
+
+  <!-- ===== PLATFORM & EQUIPMENT ===== -->
+  <section class="content-section">
+
+    <p class="section-label">04 — Setup</p>
+
+    <h2 class="section-title">
+      Platform, Tools & Equipment
+    </h2>
+
+    <p class="section-intro">
+      We selected tools that can support clear communication,
+      good visuals, and an organized livestream.
+    </p>
+
+    <div class="table-container">
+
+      <table>
+
+        <tr>
+          <th>Tool / Equipment</th>
+          <th>Purpose</th>
+        </tr>
+
+        <tr>
+          <td>YouTube</td>
+          <td>
+            Main livestreaming platform for presenting our reviews
+            and interacting with viewers.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Google Sites</td>
+          <td>
+            Website platform for organizing our project information,
+            content, and sources.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Smartphone / Camera</td>
+          <td>
+            Used to record the livestream and capture visuals.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Microphone / Headset</td>
+          <td>
+            Helps make the hosts' voices clearer.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Light Source</td>
+          <td>
+            Improves visibility and the overall quality of the video.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Stable Internet</td>
+          <td>
+            Helps keep the livestream smooth and connected.
+          </td>
+        </tr>
+
+        <tr>
+          <td>Canva</td>
+          <td>
+            Used to create thumbnails, graphics, and other visuals.
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== ACTIVITIES ===== -->
+  <section class="content-section">
+
+    <p class="section-label">05 — Content</p>
+
+    <h2 class="section-title">
+      What Happens During the Stream
+    </h2>
+
+    <p class="section-intro">
+      Our livestream will have different activities so that the
+      content stays useful and interactive.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Product Review</h3>
+        <p>
+          Discuss the product's purpose, quality, price, usefulness,
+          and other important factors.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>Food Review</h3>
+        <p>
+          Talk about taste, quality, price, overall experience,
+          and other relevant details.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Compare & Decide</h3>
+        <p>
+          Compare two similar choices and discuss their strengths
+          and differences.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">04</div>
+        <h3>Viewer Questions</h3>
+        <p>
+          Respond to audience questions, comments, and reactions
+          during the livestream.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">05</div>
+        <h3>Final Takeaway</h3>
+        <p>
+          Summarize the important points viewers should consider
+          before making their own choice.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== SMART GOALS ===== -->
+  <section class="content-section" id="goals">
+
+    <p class="section-label">06 — Our Plan</p>
+
+    <h2 class="section-title">
+      SMART Goals
+    </h2>
+
+    <p class="section-intro">
+      Our goals help keep the project specific, realistic, and
+      connected to the purpose of our livestream.
+    </p>
+
+    <div class="smart-grid">
+
+      <div class="smart-card">
+        <div class="smart-letter">S</div>
+        <h3>Specific</h3>
+        <p>
+          Create a product and food review livestream focused on
+          useful information.
+        </p>
+      </div>
+
+      <div class="smart-card">
+        <div class="smart-letter">M</div>
+        <h3>Measurable</h3>
+        <p>
+          Prepare at least one product review and one food review
+          with researched information.
+        </p>
+      </div>
+
+      <div class="smart-card">
+        <div class="smart-letter">A</div>
+        <h3>Achievable</h3>
+        <p>
+          Use accessible tools such as smartphones, laptops,
+          Canva, and Google Sites.
+        </p>
+      </div>
+
+      <div class="smart-card">
+        <div class="smart-letter">R</div>
+        <h3>Relevant</h3>
+        <p>
+          Help viewers become more informed and careful before
+          buying or trying something.
+        </p>
+      </div>
+
+      <div class="smart-card">
+        <div class="smart-letter">T</div>
+        <h3>Time-Bound</h3>
+        <p>
+          Finalize our website content and livestream plan
+          by our next group meeting.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== SOURCES ===== -->
+  <section class="content-section">
+
+    <p class="section-label">07 — References</p>
+
+    <h2 class="section-title">
+      Sources We Used
+    </h2>
+
+    <p class="section-intro">
+      These sources helped us understand livestreaming, platforms,
+      and the tools needed for our project.
+    </p>
+
+    <div class="source-list">
+
+      <div class="source">
+        <span>YouTube Help — Learn about live streams</span>
+        <a
+          class="source-button"
+          href="https://support.google.com/youtube/answer/15270973"
+          target="_blank">
+          Visit ↗
+        </a>
+      </div>
+
+      <div class="source">
+        <span>YouTube Help — Get started with live streaming</span>
+        <a
+          class="source-button"
+          href="https://support.google.com/youtube/answer/2474026"
+          target="_blank">
+          Visit ↗
+        </a>
+      </div>
+
+      <div class="source">
+        <span>Google Sites Help — Create and manage a site</span>
+        <a
+          class="source-button"
+          href="https://support.google.com/sites/answer/98081"
+          target="_blank">
+          Visit ↗
+        </a>
+      </div>
+
+      <div class="source">
+        <span>YouTube Help — Streaming tips</span>
+        <a
+          class="source-button"
+          href="https://support.google.com/youtube/answer/2853856"
+          target="_blank">
+          Visit ↗
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+
+    <h2>Check Before You Choose</h2>
+
+    <p>
+      A streaming project about making safer and more informed choices.
+    </p>
+
+    <br>
+
+    <p>
+      Group 4 • 2026
+    </p>
+
+  </footer>
 
 </body>
 </html>
